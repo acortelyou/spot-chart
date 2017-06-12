@@ -16,6 +16,12 @@ instanceTypes=['g2.2xlarge', 'g2.8xlarge']
 productDescriptions = ['Linux/UNIX (Amazon VPC)']
 regions = ['us-east-1','us-west-1','us-west-2','eu-central-1','ap-northeast-1','ap-southeast-1']
 
+# colors
+colors = ['#009e73','#d55e08','#e69f00','#cc79a7','#0072b2','#56b4e9','#000000']
+region_color = {}
+for region in regions:
+	region_color[region] = colors.pop(0)
+
 # range
 now = datetime.utcnow().replace(microsecond=0)
 start = now - timedelta(days=7)
@@ -93,11 +99,10 @@ for type in instanceTypes:
 	plt.figure(1, figsize=(25.6,7.2), tight_layout=True)
 
 	# plot dataframe
-	colors = ['#1f77b4','#ff7f0e','#d62728','#9467bd','#2ca02c','#bcbd22']
 	for region, region_data in df.groupby(['Region'], as_index=False):
 		region_data = region_data.resample('60s').interpolate()
 		region_data = pd.rolling_mean(region_data,15)
-		plt.plot(region_data.index, region_data['SpotPrice'],label=region,color=colors.pop())
+		plt.plot(region_data.index, region_data['SpotPrice'],label=region,color=region_color[region])
 
 	# set up axes
 	ax = plt.gca()

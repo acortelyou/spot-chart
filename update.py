@@ -14,7 +14,7 @@ warnings.simplefilter("ignore", UserWarning)
 # filters
 instanceTypes=['g2.2xlarge', 'g2.8xlarge']
 productDescriptions = ['Linux/UNIX (Amazon VPC)']
-regions = ['us-east-1','us-west-1','us-west-2','ap-northeast-1','ap-southeast-1']
+regions = ['us-east-1','us-west-1','us-west-2','ap-northeast-1','ap-southeast-1','eu-central-1']
 
 # range
 now = datetime.utcnow().replace(microsecond=0)

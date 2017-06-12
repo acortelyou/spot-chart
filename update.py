@@ -24,7 +24,7 @@ for region in regions:
 
 # range
 now = datetime.utcnow().replace(microsecond=0)
-start = now - timedelta(days=7)
+start = now - timedelta(days=3)
 end = now
 print('range\t', start, 'to', end)
 
@@ -112,9 +112,9 @@ for type in instanceTypes:
 	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%H:00'))
 	plt.autoscale(enable=True, axis='y', tight=True)
 	ylim = ax.get_ylim()
-	ymax = (ylim[0]+.01) * 5
+	ymax = (ylim[0]+.01) * 4
 	ymax = ylim[1] if ylim[1] < ymax else ymax
-	ymax = 2 if ymax > 2 else ymax
+	ymax = ymax / 2 if ymax > 1 else ymax
 	plt.ylim(ylim[0],ymax)
 
 	# set up labels

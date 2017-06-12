@@ -1,5 +1,19 @@
 
-# Created by https://www.gitignore.io/api/linux,windows,python,images
+# Created by https://www.gitignore.io/api/linux,windows,python,images,data
+
+### Data ###
+*.csv
+*.dat
+*.efx
+*.gbr
+*.key
+*.pps
+*.ppt
+*.pptx
+*.sdf
+*.tax2010
+*.vcf
+*.xml
 
 ### Images ###
 # JPEG
@@ -202,4 +216,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/linux,windows,python,images
+# End of https://www.gitignore.io/api/linux,windows,python,images,data

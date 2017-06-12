@@ -22,6 +22,10 @@ region_color = {}
 for region in regions:
 	region_color[region] = colors.pop(0)
 
+# size
+width = 1920
+height = 720
+
 # range
 now = datetime.utcnow().replace(microsecond=0)
 start = now - timedelta(days=3)
@@ -96,7 +100,7 @@ for type in instanceTypes:
 
 	# set up plot figure
 	pd.set_option('display.mpl_style', 'default')
-	plt.figure(1, figsize=(25.6,7.2), tight_layout=True)
+	plt.figure(1, figsize=(width/100,height/100), tight_layout=True)
 
 	# plot dataframe
 	for region, region_data in df.groupby(['Region'], as_index=False):
@@ -122,6 +126,7 @@ for type in instanceTypes:
 	plt.title(title)
 	plt.ylabel('Lowest Price')
 	plt.xlabel('Zulu Time')
+	plt.figtext(x=0.005,y=0.005*(width/height),s=now.strftime("%Y-%m-%dT%H:%M:%SZ"))
 
 	# sort legend
 	handles,labels = ax.get_legend_handles_labels()

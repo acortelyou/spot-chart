@@ -8,6 +8,7 @@ from matplotlib import pyplot as plt
 import pandas as pd
 import boto3
 import re
+import os
 import warnings
 warnings.simplefilter("ignore", UserWarning)
 
@@ -35,6 +36,7 @@ print('range\t', start, 'to', end)
 # load data from file
 try:
 	fileName = 'data.csv'
+	last_update = datetime.fromtimestamp(os.path.getmtime(fileName))
 	data = pd.read_csv(fileName, encoding='utf-8')
 	data['Timestamp'] = pd.to_datetime(data['Timestamp'], utc=True)
 
@@ -45,12 +47,13 @@ try:
 	print('loaded\t', min_timestamp, 'to', max_timestamp)
 except:
 	data = None
+	last_update = datetime.min
 	min_timestamp = datetime.max
 	max_timestamp = datetime.min
 
 # load data from aws
-start_request = max_timestamp if min_timestamp < start else start
-if end - start_request > timedelta(minutes=59):
+if now - last_update > timedelta(minutes=10):
+	start_request = max_timestamp if min_timestamp < start else start
 	print('pulling\t', start_request, 'to', end)
 	l = []
 	for region in regions:

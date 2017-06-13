@@ -117,12 +117,8 @@ for type in instanceTypes:
 	ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(6))
 	ax.xaxis.set_major_formatter(mdates.DateFormatter('%a'))
 	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%H:00'))
-	plt.autoscale(enable=True, axis='y', tight=True)
-	ylim = ax.get_ylim()
-	ymax = (ylim[0]+.01) * 4
-	ymax = ylim[1] if ylim[1] < ymax else ymax
-	ymax = ymax / 2 if ymax > 1 else ymax
-	plt.ylim(ylim[0],ymax)
+	ymin,ymax = df['SpotPrice'].quantile(.01),df['SpotPrice'].quantile(.8)
+	plt.ylim(ymin,ymax)
 
 	# set up labels
 	title = type+' - '+productDescriptions[0]

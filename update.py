@@ -129,10 +129,15 @@ for type in instanceTypes:
 
 	# sort legend
 	handles,labels = ax.get_legend_handles_labels()
-	sorted=[]
+	sorted_handles=[]
+	sorted_regions=[]
 	for region in regions:
-		sorted.append(handles[labels.index(region)])
-	ax.legend(sorted, regions, loc=2)
+		try:
+			sorted_handles.append(handles[labels.index(region)])
+			sorted_regions.append(region)
+		except:
+			pass
+	ax.legend(sorted_handles, sorted_regions, loc=2)
 
 	# save output
 	filename=re.sub('(/UNIX|Amazon|[ \(\)])','',title)+'.png'

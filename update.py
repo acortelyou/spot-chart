@@ -31,14 +31,15 @@ height = 720
 now = datetime.utcnow().replace(microsecond=0)
 start = now - timedelta(days=3)
 end = now
-print('range\t', start, 'to', end)
+print('time\t', now)
 
 # load data from file
 try:
 	fileName = 'data.csv'
-	last_update = datetime.fromtimestamp(os.path.getmtime(fileName))
 	data = pd.read_csv(fileName, encoding='utf-8')
 	data['Timestamp'] = pd.to_datetime(data['Timestamp'], utc=True)
+	last_update = datetime.utcfromtimestamp(os.path.getmtime(fileName)).replace(microsecond=0)
+	print('last\t', last_update)
 
 	# find existing range
 	az_timestamps = data.groupby(['AvailabilityZone'])['Timestamp']

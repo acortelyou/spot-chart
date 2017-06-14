@@ -118,6 +118,7 @@ for type in instanceTypes:
 	ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(6))
 	ax.xaxis.set_major_formatter(mdates.DateFormatter('%a'))
 	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%H:00'))
+	ax.invert_xaxis()
 	ymin,ymax = df['SpotPrice'].quantile(.01),df['SpotPrice'].quantile(.8)
 	plt.ylim(ymin,ymax)
 

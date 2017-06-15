@@ -115,7 +115,7 @@ for type in instanceTypes:
 	# set up axes
 	ax = plt.gca()
 	ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
-	ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(6))
+	ax.xaxis.set_minor_locator(ticker.AutoMinorLocator(8))
 	ax.xaxis.set_major_formatter(mdates.DateFormatter('%a'))
 	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%H:00'))
 	ax.invert_xaxis()

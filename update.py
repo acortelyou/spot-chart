@@ -129,6 +129,12 @@ for type in instanceTypes:
 	plt.xlabel('Zulu Time')
 	plt.figtext(x=0.005,y=0.005*(width/height),s=now.strftime("%Y-%m-%dT%H:%M:%SZ"))
 
+	# provide estimated bid price
+	bidstart = end - timedelta(hours=3)
+	bidprices = df[df.Timestamp > bidstart]['SpotPrice']
+	bidmin,bidmax = bidprices.quantile(.05),bidprices.quantile(.25)
+	plt.figtext(x=0.1,y=0.005*(width/height),s="Bid " + ('%.3f' % bidmin) + " to " + ('%.3f' % bidmax))
+
 	# sort legend
 	handles,labels = ax.get_legend_handles_labels()
 	sorted_handles=[]
